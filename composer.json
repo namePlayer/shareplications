@@ -1,0 +1,16 @@
+{
+    "name": "nameplayer/shareplications",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Nameplayer\\Shareplications\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "namePlayer",
+            "email": "robin@npcore.net"
+        }
+    ],
+    "require": {}
+}
