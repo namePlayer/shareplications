@@ -12,5 +12,7 @@
             "email": "robin@npcore.net"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "*"
+    }
 }

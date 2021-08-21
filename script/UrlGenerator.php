@@ -1,7 +1,5 @@
 <?php
 
-use \PDO;
-
 class UrlGenerator
 {
 
@@ -34,7 +32,7 @@ class UrlGenerator
         return $stmt->fetchColumn() != 0;
     }
 
-    public function addShortenUrl($origUrl, $shortUrl): string {
+    public function addShortenUrl($origUrl, $shortUrl) {
 
         if(empty($shortUrl)) {
             $shortUrl = $this->generateUrlString();
@@ -47,7 +45,7 @@ class UrlGenerator
             }
         }
 
-        return false;
+        return null;
     }
 
 }
