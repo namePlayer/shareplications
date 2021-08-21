@@ -14,8 +14,6 @@ if(isset($_POST['longUrlInput'])) {
         $generatedUrl = $urlGenerator->addShortenUrl($origUrl, '');
     }
 
-    var_dump($generatedUrl);
-
     if($generatedUrl != NULL) {
         $alerts[] = ['type' => 'success', 'message' => 'Die Kurzurl wurde angelegt'];
     }
@@ -23,7 +21,5 @@ if(isset($_POST['longUrlInput'])) {
     $messages = array_merge($messages, $alerts);
 
 }
-
-var_dump($messages);
 
 require_once TEMPLATE_DIR.'/page/home.php';

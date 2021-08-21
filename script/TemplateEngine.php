@@ -2,9 +2,6 @@
 
 class TemplateEngine
 {
-
-    private array $alerts = [];
-
     public function render(string $name, array $arguments = [])
     {
         ob_start();
@@ -16,21 +13,14 @@ class TemplateEngine
         return ob_get_clean();
     }
 
-    public function addAlert($alertType, $alertMessage): void
-    {
-        $this->alerts[] = ['type' => $alertType, 'message' => $alertMessage];
-    }
-
-    public function outputAlerts(): string
+    public function outputAlerts(array $messages): string
     {
         $output = '';
-        foreach ($this->alerts as $alert) {
+        foreach ($messages as $alert) {
 
             $output .= $this->render('alert', ['type' => $alert['type'], 'message' => $alert['message']]);
 
         }
-
-        $this->alerts = [];
 
         return $output;
     }

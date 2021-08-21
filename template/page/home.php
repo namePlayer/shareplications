@@ -12,7 +12,7 @@
 
     <div class="container mt-5">
 
-        <?php $templateEngine->outputAlerts($messages) ?>
+        <?php echo $templateEngine->outputAlerts($messages) ?>
 
         <div class="card">
             <div class="card-header text-center">
