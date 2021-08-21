@@ -24,4 +24,6 @@ if(isset($_POST['longUrlInput'])) {
 
 }
 
+var_dump($messages);
+
 require_once TEMPLATE_DIR.'/page/home.php';

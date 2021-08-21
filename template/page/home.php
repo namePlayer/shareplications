@@ -11,6 +11,9 @@
 <body>
 
     <div class="container mt-5">
+
+        <?php $templateEngine->outputAlerts($messages) ?>
+
         <div class="card">
             <div class="card-header text-center">
                 <span>Neue Kurz-URL anlegen</span>

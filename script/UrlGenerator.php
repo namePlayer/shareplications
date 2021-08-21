@@ -38,9 +38,11 @@ class UrlGenerator
             $shortUrl = $this->generateUrlString();
         }
 
+        $time = time();
+
         if(!$this->checkKeyExists($shortUrl)) {
-            $stmt = $this->database->prepare("INSERT INTO `shortlinks` SET `link_redirect` = :origurl, `link_shortcode` = :shortcode");
-            if($stmt->execute(['origurl' => $origUrl, 'shortcode' => $shortUrl])) {
+            $stmt = $this->database->prepare("INSERT INTO `shortlinks` SET `link_redirect` = :origurl, `link_shortcode` = :shortcode, `link_created` = :curtime");
+            if($stmt->execute(['origurl' => $origUrl, 'shortcode' => $shortUrl, 'curtime' => $time])) {
                 return $shortUrl;
             }
         }
