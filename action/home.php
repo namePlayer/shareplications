@@ -15,7 +15,7 @@ if(isset($_POST['longUrlInput'])) {
     }
 
     if($generatedUrl != NULL) {
-        $alerts[] = ['type' => 'success', 'message' => 'Die Kurzurl wurde angelegt'];
+        $alerts[] = ['type' => 'success', 'message' => 'Die Kurzurl wurde angelegt. Adresse: <b>'.$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.$generatedUrl.'</b>'];
     }
 
     $messages = array_merge($messages, $alerts);
