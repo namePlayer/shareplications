@@ -12,4 +12,6 @@ require_once SCRIPT_DIR.'/UrlGenerator.php';
 
 $urlGenerator = new UrlGenerator($dbConnection);
 
+require_once BASE_DIR.'/vendor/autoload.php';
+
 require_once BASE_DIR.'/routes.php';

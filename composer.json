@@ -13,6 +13,7 @@
         }
     ],
     "require": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "2amigos/qrcode-library": "^2.0"
     }
 }

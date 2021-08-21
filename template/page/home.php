@@ -41,6 +41,32 @@
                                     </h2>
                                     <div id="shareOptionsTab" class="accordion-collapse collapse show" aria-labelledby="shareOptionsHeading" data-bs-parent="#shareOptionsDropdown">
                                         <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="form-check form-switch mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="toggleCreateQR" name="toggleCreateQR">
+                                                        <label class="form-check-label" for="toggleCreateQR">Create QR-Code</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="mb-3">
+                                                                <label for="foregroundCreateQR" class="form-label">Vordergrund Farbe</label>
+                                                                <input type="color" class="form-control form-control-color" id="foregroundCreateQR" name="foregroundCreateQR" value="#000000">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="mb-3">
+                                                                <label for="backgroundCreateQR" class="form-label">Hintergrund Farbe</label>
+                                                                <input type="color" class="form-control form-control-color" id="backgroundCreateQR" name="backgroundCreateQR" value="#FFFFFF">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?= $qrImageField ?>
+                                                <div class="col-md-6 mb-3">
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

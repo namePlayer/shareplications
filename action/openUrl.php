@@ -11,6 +11,5 @@ if($stmt->rowCount() == 0) {
 $data = $stmt->fetch();
 
 $destination = $data['link_redirect'];
-var_dump($destination);
 
 header("Location: ".$destination);
