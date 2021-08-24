@@ -31,6 +31,10 @@
                                 <button class="btn btn-dark w-100" type="submit">Kürzen</button>
                             </div>
                         </div>
+                        <div class="row">
+                            <?= $qrImageField ?>
+                        </div>
+                        <hr>
                         <div class="col-12">
                             <div class="accordion" id="advancedOptionsDropdown">
                                 <div class="accordion-item">
@@ -62,7 +66,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?= $qrImageField ?>
                                                 <div class="col-md-6 mb-3">
 
                                                 </div>
@@ -77,7 +80,32 @@
                                         </button>
                                     </h2>
                                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body"></div>
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-check form-switch mb-3">
+                                                            <input class="form-check-input" type="checkbox" id="enableShortlinkTelemetry" checked name="enableShortlinkTelemetry">
+                                                            <label for="toggleShortlinkTelemetry" class="form-label">Aktiviere Link-Telemetrie</label> <br>
+                                                            <small class="text-muted">
+                                                                <i>Durch aktivieren dieser Option kann man die maximalen Nutzungen des Kurzlinks aktiveren</i>
+                                                                <br>
+                                                                <i>Die Telemetrie kann mittels <b>/telemetry</b> am Ende der URL aufgerufen werden</i>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="mb-3">
+                                                            <label for="maximumShortlinkUses" class="form-label">Maximale Nutzungen</label>
+                                                            <input type="number" class="form-control" id="maximumShortlinkUses" name="maximumShortlinkUses">
+                                                            <small class="text-muted">0 = Unbegrenzte Nutzung</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

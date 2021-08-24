@@ -12,7 +12,7 @@ class UrlGenerator
 
     }
 
-    private function generateUrlString($stringLength = 8): string {
+    private function generateRandomUrlString(int $stringLength = 8): string|null {
 
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -21,10 +21,14 @@ class UrlGenerator
             $urlString .= $characters[rand(0, $charactersLength - 1)];
         }
 
+        if($this->checkKeyExists($urlString) === true && $stringLength != 12) {
+            $this->generateRandomUrlString($stringLength + 1);
+        }
+
         return $urlString;
     }
 
-    private function checkKeyExists($code): bool {
+    private function checkKeyExists(string $code): bool {
 
         $stmt = $this->database->prepare("SELECT COUNT(*) FROM `shortlinks` WHERE `link_shortcode` = :code");
         $stmt->execute(['code' => $code]);
@@ -32,17 +36,18 @@ class UrlGenerator
         return $stmt->fetchColumn() != 0;
     }
 
-    public function addShortenUrl($origUrl, $shortUrl) {
+    public function addShortenUrl(string $origUrl, string $enableTelemetry, ?int $maxLinkUse, string $shortUrl): string|null {
 
         if(empty($shortUrl)) {
-            $shortUrl = $this->generateUrlString();
+            $shortUrl = $this->generateRandomUrlString();
         }
 
         $time = time();
 
         if(!$this->checkKeyExists($shortUrl)) {
-            $stmt = $this->database->prepare("INSERT INTO `shortlinks` SET `link_redirect` = :origurl, `link_shortcode` = :shortcode, `link_created` = :curtime");
-            if($stmt->execute(['origurl' => $origUrl, 'shortcode' => $shortUrl, 'curtime' => $time])) {
+
+            $stmt = $this->database->prepare("INSERT INTO `shortlinks` SET `link_redirect` = :origurl, `link_shortcode` = :shortcode, `link_created` = :curtime, `link_telemetry` = :enableTelemetry, `link_maxuse` = :maxuse");
+            if($stmt->execute(['origurl' => $origUrl, 'shortcode' => $shortUrl, 'curtime' => $time, 'enableTelemetry' => $enableTelemetry, 'maxuse' => $maxLinkUse])) {
                 return $shortUrl;
             }
         }

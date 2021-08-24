@@ -10,6 +10,9 @@ if(isset($_POST['longUrlInput'])) {
     $alerts = [];
     $generatedUrl = null;
 
+    $enableTelemetry = 'false';
+    $linkMaxUse = NULL;
+
     if(empty($origUrl)) {
         $alerts[] = ['type' => 'danger', 'message' => 'Die ursprüngliche URL darf nich leer sein!'];
     }
@@ -18,8 +21,20 @@ if(isset($_POST['longUrlInput'])) {
         $alerts[] = ['type' => 'danger', 'message' => 'Wäre es nicht ziemlich Sinnfrei, einen Link zu erstellen, der zur selben Seite weiterzuleitet? Denk mal drüber nach.'];
     }
 
+    if(isset($_POST['enableShortlinkTelemetry'])) {
+
+        $enableTelemetry = 'true';
+
+        if(isset($_POST['maximumShortlinkUses']) && $_POST['maximumShortlinkUses'] > 0) {
+
+            $linkMaxUse = $_POST['maximumShortlinkUses'];
+
+        }
+
+    }
+
     if(count($alerts) == 0) {
-        $generatedUrl = $urlGenerator->addShortenUrl($origUrl, '');
+        $generatedUrl = $urlGenerator->addShortenUrl($origUrl, $enableTelemetry, $linkMaxUse, '');
     }
 
     if($generatedUrl != NULL) {
@@ -34,7 +49,6 @@ if(isset($_POST['longUrlInput'])) {
         $qrForeground = $_POST['foregroundCreateQR'];
         $qrBackground = $_POST['backgroundCreateQR'];
 
-
         list($redFore, $greenFore, $blueFore) = sscanf($qrForeground, "#%02x%02x%02x");
         list($redBack, $greenBack, $blueBack) = sscanf($qrBackground, "#%02x%02x%02x");
 
@@ -47,7 +61,7 @@ if(isset($_POST['longUrlInput'])) {
         $base64 = $qrCode->writeDataUri();
 
         if(!empty($base64)) {
-            $qrImageField = $templateEngine->render('qrcode-form', ['base64Image' => $base64]);
+            $qrImageField = $templateEngine->render('qrshare-form', ['base64Image' => $base64]);
         }
 
     }
