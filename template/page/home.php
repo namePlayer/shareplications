@@ -99,8 +99,17 @@
                                                     <div class="mb-3">
                                                         <div class="mb-3">
                                                             <label for="maximumShortlinkUses" class="form-label">Maximale Nutzungen</label>
-                                                            <input type="number" class="form-control" id="maximumShortlinkUses" name="maximumShortlinkUses">
+                                                            <input type="number" class="form-control" id="maximumShortlinkUses" name="maximumShortlinkUses" value="0">
                                                             <small class="text-muted">0 = Unbegrenzte Nutzung</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="mb-3">
+                                                            <label for="linkAccessToken" class="form-label">Zugriffsschlüssel</label>
+                                                            <input type="password" class="form-control" id="linkAccessToken" name="linkAccessToken">
+                                                            <small class="text-muted">Der Zugriffsschlüssel wird an die Kurz URL mittels <b>?key=XXXXXX</b> angehängt</small>
                                                         </div>
                                                     </div>
                                                 </div>

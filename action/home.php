@@ -12,6 +12,7 @@ if(isset($_POST['longUrlInput'])) {
 
     $enableTelemetry = 'false';
     $linkMaxUse = NULL;
+    $password = '';
 
     if(empty($origUrl)) {
         $alerts[] = ['type' => 'danger', 'message' => 'Die ursprüngliche URL darf nich leer sein!'];
@@ -25,7 +26,7 @@ if(isset($_POST['longUrlInput'])) {
 
         $enableTelemetry = 'true';
 
-        if(isset($_POST['maximumShortlinkUses']) && $_POST['maximumShortlinkUses'] > 0) {
+        if(isset($_POST['maximumShortlinkUses']) && is_int($_POST['maximumShortlinkUses']) && $_POST['maximumShortlinkUses'] > 0) {
 
             $linkMaxUse = $_POST['maximumShortlinkUses'];
 
@@ -33,8 +34,14 @@ if(isset($_POST['longUrlInput'])) {
 
     }
 
+    if(isset($_POST['linkAccessToken']) && !empty($_POST['linkAccessToken'])) {
+
+        $password = password_hash($_POST['linkAccessToken'], PASSWORD_BCRYPT);
+
+    }
+
     if(count($alerts) == 0) {
-        $generatedUrl = $urlGenerator->addShortenUrl($origUrl, $enableTelemetry, $linkMaxUse, '');
+        $generatedUrl = $urlGenerator->addShortenUrl($origUrl, $enableTelemetry, $linkMaxUse, $password, '');
     }
 
     if($generatedUrl != NULL) {
@@ -61,7 +68,9 @@ if(isset($_POST['longUrlInput'])) {
         $base64 = $qrCode->writeDataUri();
 
         if(!empty($base64)) {
+
             $qrImageField = $templateEngine->render('qrshare-form', ['base64Image' => $base64]);
+
         }
 
     }
