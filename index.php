@@ -10,7 +10,8 @@ $messages = [];
 
 require_once SCRIPT_DIR.'/UrlGenerator.php';
 
-$urlGenerator = new UrlGenerator($dbConnection);
+$urlGenerator = new UrlGenerator();
+$urlGenerator->construct($dbConnection);
 
 require_once BASE_DIR.'/vendor/autoload.php';
 
