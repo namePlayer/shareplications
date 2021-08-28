@@ -19,7 +19,19 @@
             <span>Kurz-URL Informationen</span>
         </div>
         <div class="card-body">
-
+            <div class="row">
+                <div class="col-md-6">
+                    <span><strong>Link ID:</strong> <?= $data['link_id']; ?></span> <br>
+                    <span><strong>Shortcode:</strong> <?= $shortRequested ?></span> <br>
+                    <span><strong>Weiterleitung auf:</strong> <a href="<?= $data['link_redirect'] ?>"><?= $data['link_redirect'] ?></a></span>
+                    <span><strong>Erstellt am:</strong> <?= date('d.m.Y H:i', $data['link_created']) ?></span>
+                </div>
+                <div class="col-md-6">
+                    <span><strong>Zugriffe:</strong> <?= $accessCount ?></span>
+                    <hr>
+                    <h5>Useragents (letzte 15 Zugriffe)</h5>
+                </div>
+            </div>
         </div>
     </div>
 </div>
