@@ -12,8 +12,8 @@ router('/([\w-]+)', function($shortRequested) use ($requestedPath, $templateEngi
     require_once ACTION_DIR.'/openUrl.php';
 },'GET');
 
-router('/([\w-]+)/telemetry', function($shortRequested) use ($requestedPath, $templateEngine, $urlGenerator, $messages, $dbConnection) {
-    require_once ACTION_DIR.'/telemetry.php';
+router('/([\w-]+)/info', function($shortRequested) use ($requestedPath, $templateEngine, $urlGenerator, $messages, $dbConnection) {
+    require_once ACTION_DIR . '/info.php';
 },'GET');
 
 echo router($requestedUrl);

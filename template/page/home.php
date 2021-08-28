@@ -90,7 +90,7 @@
                                                             <small class="text-muted">
                                                                 <i>Durch aktivieren dieser Option kann man die maximalen Nutzungen des Kurzlinks aktiveren</i>
                                                                 <br>
-                                                                <i>Die Telemetrie kann mittels <b>/telemetry</b> am Ende der URL aufgerufen werden</i>
+                                                                <i>Die Telemetrie kann mittels <b>/info</b> am Ende der URL aufgerufen werden</i>
                                                             </small>
                                                         </div>
                                                     </div>
