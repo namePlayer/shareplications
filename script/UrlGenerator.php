@@ -5,7 +5,7 @@ class UrlGenerator
 
     private pdo $database;
 
-    public function construct(pdo $database)
+    public function __construct(pdo $database)
     {
 
         $this->database = $database;

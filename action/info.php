@@ -8,4 +8,7 @@ if($stmt->rowCount() === 0) {
     exit();
 }
 
+$data = $stmt->fetch();
+
+
 require_once TEMPLATE_DIR . '/page/info.php';
