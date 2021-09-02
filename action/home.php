@@ -11,8 +11,9 @@ if(isset($_POST['longUrlInput'])) {
     $generatedUrl = null;
 
     $enableTelemetry = 'false';
-    $linkMaxUse = NULL;
+    $linkMaxUse = null;
     $password = '';
+    $timestamp = NULL;
 
     if(empty($origUrl)) {
         $alerts[] = ['type' => 'danger', 'message' => 'Die ursprüngliche URL darf nich leer sein!'];
@@ -40,8 +41,32 @@ if(isset($_POST['longUrlInput'])) {
 
     }
 
+    if(isset($_POST['shortlinkExpiryDate'], $_POST['shortlinkExpiryTime']) && !empty($_POST['shortlinkExpiryDate'] && !empty($_POST['shortlinkExpiryTime']))) {
+
+        $date = $_POST['shortlinkExpiryDate'];
+        $time = $_POST['shortlinkExpiryTime'];
+
+        $timestring = DateTime::createFromFormat('Y-m-d  H:i', $date . ' ' . $time);
+        if($timestring !== FALSE) {
+            $timestamp = $timestring->getTimestamp();
+
+            if($timestamp < time()) {
+                // $timestamp = NULL;
+            }
+        }
+
+        if(!isset($timestamp) || $timestamp === NULL) {
+            $alerts[] = ['type' => 'danger', 'message' => 'Der Zeitstempel ist aus irgendeinem Grund nicht generiert worden'];
+        }
+
+    }
+
+    if($oneTimeTokenInvalid) {
+        $alerts[] = ['type' => 'danger', 'message' => 'Der Einmalschlüssel ist abgelaufen. Bitte versuche es erneut.'];
+    }
+
     if(count($alerts) == 0) {
-        $generatedUrl = $urlGenerator->addShortenUrl($origUrl, $enableTelemetry, $linkMaxUse, $password, '');
+        $generatedUrl = $urlGenerator->addShortenUrl($origUrl, $enableTelemetry, $linkMaxUse, $password, $timestamp, '');
     }
 
     if($generatedUrl != NULL) {

@@ -1,6 +1,6 @@
 <?php
 
-$stmt = $dbConnection->prepare("SELECT `link_id`,`link_redirect`,`link_telemetry`,`link_maxuse`,`link_password` FROM `shortlinks` WHERE `link_shortcode` = :code");
+$stmt = $dbConnection->prepare("SELECT `link_id`,`link_redirect`,`link_telemetry`,`link_maxuse`,`link_password`,`link_expires` FROM `shortlinks` WHERE `link_shortcode` = :code");
 $stmt->execute(['code' => $shortRequested]);
 
 if($stmt->rowCount() == 0) {
@@ -27,6 +27,11 @@ if(!empty($data['link_password'])) {
     }
 
 
+}
+
+if($data['link_expires'] <= time()) {
+    header("Location:".$requestedPath.'/');
+    exit();
 }
 
 if($data['link_telemetry'] === 'true') {

@@ -26,6 +26,9 @@
                                 <input type="text" class="form-control" name="longUrlInput" placeholder="https://google.com" id="longUrlInput">
                             </div>
                         </div>
+
+                        <input type="hidden" name="_token" value="<?= $_SESSION['_token'] ?>">
+
                         <div class="col-2">
                             <div class="mb-3">
                                 <button class="btn btn-dark w-100" type="submit">Kürzen</button>
@@ -82,7 +85,7 @@
                                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3">
                                                     <div class="mb-3">
                                                         <div class="form-check form-switch mb-3">
                                                             <input class="form-check-input" type="checkbox" id="enableShortlinkTelemetry" checked name="enableShortlinkTelemetry">
@@ -95,7 +98,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3">
                                                     <div class="mb-3">
                                                         <div class="mb-3">
                                                             <label for="maximumShortlinkUses" class="form-label">Maximale Nutzungen</label>
@@ -104,12 +107,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3">
                                                     <div class="mb-3">
                                                         <div class="mb-3">
                                                             <label for="linkAccessToken" class="form-label">Zugriffsschlüssel</label>
                                                             <input type="password" class="form-control" id="linkAccessToken" name="linkAccessToken">
                                                             <small class="text-muted">Der Zugriffsschlüssel wird an die Kurz URL mittels <b>?key=XXXXXX</b> angehängt</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="mb-3">
+                                                                <label for="maximumShortlinkUses" class="form-label">Ablaufdatum</label>
+                                                                <input type="date" class="form-control" id="maximumShortlinkUses" name="shortlinkExpiryDate">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="mb-3">
+                                                                <label for="maximumShortlinkUses" class="form-label">Ablaufuhrzeit</label>
+                                                                <input type="time" class="form-control" id="maximumShortlinkUses" name="shortlinkExpiryTime">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

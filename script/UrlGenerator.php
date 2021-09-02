@@ -36,7 +36,7 @@ class UrlGenerator
         return $stmt->fetchColumn() != 0;
     }
 
-    public function addShortenUrl(string $origUrl, string $enableTelemetry, ?int $maxLinkUse, string $accessToken,string $shortUrl): string|null {
+    public function addShortenUrl(string $origUrl, string $enableTelemetry, ?int $maxLinkUse, string $accessToken, ?int $expiryTime, string $shortUrl): string|null {
 
         if(empty($shortUrl)) {
             $shortUrl = $this->generateRandomUrlString();
@@ -46,8 +46,8 @@ class UrlGenerator
 
         if(!$this->checkKeyExists($shortUrl)) {
 
-            $stmt = $this->database->prepare("INSERT INTO `shortlinks` SET `link_redirect` = :origurl, `link_shortcode` = :shortcode, `link_created` = :curtime, `link_telemetry` = :enableTelemetry, `link_maxuse` = :maxuse, `link_password` = :accesstoken");
-            if($stmt->execute(['origurl' => $origUrl, 'shortcode' => $shortUrl, 'curtime' => $time, 'enableTelemetry' => $enableTelemetry, 'maxuse' => $maxLinkUse, 'accesstoken' => $accessToken])) {
+            $stmt = $this->database->prepare("INSERT INTO `shortlinks` SET `link_redirect` = :origurl, `link_shortcode` = :shortcode, `link_created` = :curtime, `link_telemetry` = :enableTelemetry, `link_maxuse` = :maxuse, `link_password` = :accesstoken, `link_expires` = :expiry");
+            if($stmt->execute(['origurl' => $origUrl, 'shortcode' => $shortUrl, 'curtime' => $time, 'enableTelemetry' => $enableTelemetry, 'maxuse' => $maxLinkUse, 'accesstoken' => $accessToken, 'expiry' => $expiryTime])) {
                 return $shortUrl;
             }
         }

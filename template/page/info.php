@@ -14,7 +14,7 @@
 
     <?php echo $templateEngine->outputAlerts($messages) ?>
 
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header text-center">
             <span>Kurz-URL Informationen</span>
         </div>
@@ -33,6 +33,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="text-start">
+        <a href="/<?= $requestedPath ?>">&leftleftarrows; Zur Hautpseite</a>
     </div>
 </div>
 
