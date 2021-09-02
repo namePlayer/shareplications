@@ -15,7 +15,7 @@ if(isset($_POST['longUrlInput'])) {
     $password = '';
     $timestamp = NULL;
 
-    if(empty($origUrl)) {
+    if(filter_var($origUrl, FILTER_VALIDATE_URL)) {
         $alerts[] = ['type' => 'danger', 'message' => 'Die ursprüngliche URL darf nich leer sein!'];
     }
 

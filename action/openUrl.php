@@ -29,7 +29,7 @@ if(!empty($data['link_password'])) {
 
 }
 
-if($data['link_expires'] <= time()) {
+if($data['link_expires'] !== NULL && $data['link_expires'] <= time()) {
     header("Location:".$requestedPath.'/');
     exit();
 }
@@ -58,6 +58,10 @@ if($data['link_telemetry'] === 'true') {
     $stmt = $dbConnection->prepare("INSERT INTO `telemetry` SET `telemetry_link` = :linkid, `telemetry_useragent` = :useragent, `telemetry_date` = :time, `telemetry_refferer` = :refferer");
     $stmt->execute(['linkid' => $data['link_id'], 'useragent' => $_SERVER['HTTP_USER_AGENT'], 'time' => time(), 'refferer' => $refferer]);
 
+}
+
+if(!preg_match('%https?://%ix', $destination)) {
+    $destination = 'http://' . $destination;
 }
 
 header("Location: ".$destination);
