@@ -1,10 +1,14 @@
 <?php
 session_start();
+
+var_dump($_POST);
+
 require_once __DIR__.'/config/default.php';
-require_once SCRIPT_DIR.'/database.php';
-require_once SCRIPT_DIR.'/router.php';
-require_once SCRIPT_DIR.'/TemplateEngine.php';
 require_once SCRIPT_DIR.'/csrfProtection.php';
+require_once SCRIPT_DIR.'/router.php';
+require_once SCRIPT_DIR.'/database.php';
+require_once BASE_DIR.'/vendor/autoload.php';
+require_once SCRIPT_DIR.'/TemplateEngine.php';
 
 $templateEngine = new TemplateEngine();
 $messages = [];
@@ -12,7 +16,5 @@ $messages = [];
 require_once SCRIPT_DIR.'/UrlGenerator.php';
 
 $urlGenerator = new UrlGenerator($dbConnection);
-
-require_once BASE_DIR.'/vendor/autoload.php';
 
 require_once BASE_DIR.'/routes.php';

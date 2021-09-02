@@ -15,8 +15,13 @@ if(isset($_POST['longUrlInput'])) {
     $password = '';
     $timestamp = NULL;
 
+
+    if($oneTimeTokenInvalid) {
+        // $alerts[] = ['type' => 'danger', 'message' => 'Der Einmalschlüssel ist abgelaufen. Bitte versuche es erneut.'];
+    }
+
     if(!filter_var($origUrl, FILTER_VALIDATE_URL)) {
-        $alerts[] = ['type' => 'danger', 'message' => 'Die ursprüngliche URL darf nich leer sein!'];
+        $alerts[] = ['type' => 'danger', 'message' => 'Die Zieladdresse ist ungültig. Pattern: <b>http(s)://zielhost</b>'];
     }
 
     if(str_contains($origUrl, $_SERVER['HTTP_HOST'])) {
@@ -59,10 +64,6 @@ if(isset($_POST['longUrlInput'])) {
             $alerts[] = ['type' => 'danger', 'message' => 'Der Zeitstempel ist aus irgendeinem Grund nicht generiert worden'];
         }
 
-    }
-
-    if($oneTimeTokenInvalid) {
-        $alerts[] = ['type' => 'danger', 'message' => 'Der Einmalschlüssel ist abgelaufen. Bitte versuche es erneut.'];
     }
 
     if(count($alerts) == 0) {
