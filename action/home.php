@@ -16,11 +16,6 @@ if(isset($_POST['longUrlInput'])) {
     $timestamp = NULL;
     $createdOutputFieldData = [];
 
-
-    if($oneTimeTokenInvalid) {
-        // $alerts[] = ['type' => 'danger', 'message' => 'Der Einmalschlüssel ist abgelaufen. Bitte versuche es erneut.'];
-    }
-
     if(!filter_var($origUrl, FILTER_VALIDATE_URL)) {
         $alerts[] = ['type' => 'danger', 'message' => 'Die Zieladdresse ist ungültig. Pattern: <b>http(s)://zielhost</b>'];
     }
