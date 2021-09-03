@@ -26,7 +26,6 @@
                                 <div class="col-10">
                                     <div class="mb-3">
                                         <input type="text" class="form-control" name="longUrlInput" placeholder="https://google.com" id="longUrlInput">
-                                        <input type="hidden" name="csrfToken" value="<?= $_SESSION['csrfToken'] ?>">
                                     </div>
                                 </div>
 
