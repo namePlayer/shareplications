@@ -2,7 +2,7 @@
 
 use Da\QrCode\QrCode;
 
-$qrImageField = '';
+$createdOutputField = '';
 
 if(isset($_POST['longUrlInput'])) {
 
@@ -14,6 +14,7 @@ if(isset($_POST['longUrlInput'])) {
     $linkMaxUse = null;
     $password = '';
     $timestamp = NULL;
+    $createdOutputFieldData = [];
 
 
     if($oneTimeTokenInvalid) {
@@ -28,6 +29,7 @@ if(isset($_POST['longUrlInput'])) {
         $alerts[] = ['type' => 'danger', 'message' => 'Wäre es nicht ziemlich Sinnfrei, einen Link zu erstellen, der zur selben Seite weiterzuleitet? Denk mal drüber nach.'];
     }
 
+    $createdOutputFieldData['linkMaxuse'] = 'Kein Limit';
     if(isset($_POST['enableShortlinkTelemetry'])) {
 
         $enableTelemetry = 'true';
@@ -35,6 +37,7 @@ if(isset($_POST['longUrlInput'])) {
         if(isset($_POST['maximumShortlinkUses']) && is_int($_POST['maximumShortlinkUses']) && $_POST['maximumShortlinkUses'] > 0) {
 
             $linkMaxUse = $_POST['maximumShortlinkUses'];
+            $createdOutputFieldData['linkMaxuse'] = $linkMaxUse;
 
         }
 
@@ -46,6 +49,7 @@ if(isset($_POST['longUrlInput'])) {
 
     }
 
+    $createdOutputFieldData['linkExpiry'] = 'Nie';
     if(isset($_POST['shortlinkExpiryDate'], $_POST['shortlinkExpiryTime']) && !empty($_POST['shortlinkExpiryDate'] && !empty($_POST['shortlinkExpiryTime']))) {
 
         $date = $_POST['shortlinkExpiryDate'];
@@ -55,8 +59,10 @@ if(isset($_POST['longUrlInput'])) {
         if($timestring !== FALSE) {
             $timestamp = $timestring->getTimestamp();
 
+            $createdOutputFieldData['linkExpiry'] = $date('d.m.Y H:i', $timestamp);
+
             if($timestamp < time()) {
-                // $timestamp = NULL;
+                $timestamp = NULL;
             }
         }
 
@@ -72,6 +78,8 @@ if(isset($_POST['longUrlInput'])) {
 
     if($generatedUrl != NULL) {
         $alerts[] = ['type' => 'success', 'message' => 'Die Kurzurl wurde angelegt. Adresse: <b>'.$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.$generatedUrl.'</b>'];
+        $createdOutputFieldData['linkUrl'] = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.$generatedUrl;
+        $createdOutputFieldData['destinationUrl'] = $origUrl;
     }
 
     if(count($alerts) != 1) {
@@ -95,10 +103,14 @@ if(isset($_POST['longUrlInput'])) {
 
         if(!empty($base64)) {
 
-            $qrImageField = $templateEngine->render('qrshare-form', ['base64Image' => $base64]);
+            $createdOutputFieldData['base64Image'] = $base64;
 
         }
 
+    }
+
+    if(count($alerts) === 1) {
+        $createdOutputField = $templateEngine->render('linkcreatedform', $createdOutputFieldData);
     }
 
     $messages = array_merge($messages, $alerts);

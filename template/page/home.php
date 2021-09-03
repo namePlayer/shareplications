@@ -15,7 +15,7 @@
         <?php echo $templateEngine->outputAlerts($messages) ?>
 
         <div class="row">
-            <div class="col-9">
+            <div class="col-md">
                 <div class="card">
                     <div class="card-header text-center">
                         <span>Neue Kurz-URL anlegen</span>
@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </div>
-            <?= $qrImageField ?>
+            <?= $createdOutputField ?>
         </div>
     </div>
 
