@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-4">
     <hr>
     <div class="row">
         <div class="col-md-2 text-center">
