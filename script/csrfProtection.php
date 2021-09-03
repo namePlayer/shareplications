@@ -1,4 +1,6 @@
 <?php
+$newToken = bin2hex(random_bytes(16));
+
 $oneTimeTokenInvalid = false;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -6,7 +8,4 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $oneTimeTokenInvalid = true;
     }
 }
-
-var_dump(array_key_exists('csrfToken', $_SESSION));
-
 $_SESSION['csrfToken'] = $newToken;
