@@ -13,5 +13,5 @@ Shareplications gives you a URL-Shortener with an option to generate QR-Codes di
 # Setup
 1. Import the database.sql into your Database
 2. Set your Database Credentials in the **config/database.php** File
-3. Setup composer by using `composer update`
+3. Setup composer by using `composer update` (or extract the vendor.zip File)
 4. Access your Page and start creating Short-URLs
