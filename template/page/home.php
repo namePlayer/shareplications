@@ -130,6 +130,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <small class="text-muted">Uhrzeit und Datum müssen angegeben werden, ansonsten wird das Ablaufdatum nicht gesetzt!</small>
                                                 </div>
                                             </div>
                                         </div>
