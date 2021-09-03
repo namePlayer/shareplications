@@ -2,10 +2,10 @@
     <hr>
     <div class="row">
         <div class="col-md-2 text-center">
-            <a href="https://npcore.net/impressum">Impressum</a>
+            <a href="">Impressum</a>
         </div>
         <div class="col-md-2 text-center">
-            <a href="https://npcore.net/datenschutz">Datenschutz</a>
+            <a href="">Datenschutz</a>
         </div>
         <div class="col-md-4 text-center">
             <b>Shareplications</b> &middot; <small><i>Y01-C01</i></small><br>
