@@ -1,6 +1,4 @@
 <?php
-$newToken = bin2hex(random_bytes(16));
-
 $oneTimeTokenInvalid = false;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {

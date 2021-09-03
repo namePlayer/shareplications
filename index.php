@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-var_dump($_POST);
-
 require_once __DIR__.'/config/default.php';
 require_once SCRIPT_DIR.'/csrfProtection.php';
 require_once SCRIPT_DIR.'/router.php';
