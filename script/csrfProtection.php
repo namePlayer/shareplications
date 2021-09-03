@@ -8,4 +8,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $oneTimeTokenInvalid = true;
     }
 }
+
 $_SESSION['csrfToken'] = $newToken;

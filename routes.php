@@ -16,4 +16,11 @@ router('/([\w-]+)/info', function($shortRequested) use ($requestedPath, $templat
     require_once ACTION_DIR . '/info.php';
 },'GET');
 
+$content = router($requestedUrl);
+
+if(router($requestedUrl) === FALSE) {
+    header("Location: ".$requestedPath);
+    return;
+}
+
 echo router($requestedUrl);

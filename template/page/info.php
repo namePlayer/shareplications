@@ -23,13 +23,26 @@
                 <div class="col-md-6">
                     <span><strong>Link ID:</strong> <?= $data['link_id']; ?></span> <br>
                     <span><strong>Shortcode:</strong> <?= $shortRequested ?></span> <br>
-                    <span><strong>Weiterleitung auf:</strong> <a href="<?= $data['link_redirect'] ?>"><?= $data['link_redirect'] ?></a></span>
-                    <span><strong>Erstellt am:</strong> <?= date('d.m.Y H:i', $data['link_created']) ?></span>
+                    <span><strong>Weiterleitung auf:</strong> <a href="<?= $data['link_redirect'] ?>"><?= $data['link_redirect'] ?></a></span> <br>
+                    <span><strong>Erstellt am:</strong> <?= date('d.m.Y H:i', $data['link_created']) ?></span> <br>
+                    <span><strong>Ablauf:</strong> <?= $expires ?></span> <br>
                 </div>
                 <div class="col-md-6">
-                    <span><strong>Zugriffe:</strong> <?= $accessCount ?></span>
+                    <span><strong>Zugriffe:</strong> <?= $uses ?></span>
                     <hr>
                     <h5>Useragents (letzte 15 Zugriffe)</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Useragent</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?= $accessList ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
