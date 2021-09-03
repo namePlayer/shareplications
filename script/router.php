@@ -25,15 +25,15 @@ function router($path = null, $action = null, $methods = 'POST|GET',bool $direct
             continue;
         }
         if (!is_callable($action)) {
-            return [$path, 'Route not found'];
+            return false;
         }
         if($currentDirectRequestIsDisabled && $_SERVER['REQUEST_URI'] && $_SERVER['REQUEST_URI'] === $originalPath){
-            return [$path, 'Route not found'];
+            return false;
         }
         array_shift($matches);
         array_shift($matches);
         $response = $action(...$matches);
         return $response;
     }
-    return [$path, 'Route not found'];
+    return false;
 }

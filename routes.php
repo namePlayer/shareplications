@@ -19,7 +19,7 @@ router('/([\w-]+)/info', function($shortRequested) use ($requestedPath, $templat
 $content = router($requestedUrl);
 
 if(router($requestedUrl) === FALSE) {
-    header("Location: ".$requestedPath);
+    header("Location: ".$requestedPath.'/');
     return;
 }
 
