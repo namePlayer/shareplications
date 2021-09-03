@@ -104,7 +104,13 @@ if(isset($_POST['longUrlInput'])) {
 
     }
 
-    if(count($alerts) === 1) {
+    $errorCount = 0;
+    foreach ($alerts as $alert) {
+        if($alert['type'] === 'danger') {
+            $errorCount += 1;
+        }
+    }
+    if($errorCount === 0) {
         $createdOutputField = $templateEngine->render('linkcreatedform', $createdOutputFieldData);
     }
 
