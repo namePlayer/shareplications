@@ -26,7 +26,8 @@ if($data['link_maxuse'] > 0) {
     $uses = $accessCount . ' / ' . $data['link_maxuse'];
 }
 
-while($row = $stmt->fetch()) {
+$accessListCount = 0;
+while($row = $stmt->fetch() && $accessList < 15) {
     $accessList .= '<tr><th scope="row">'.$row['telemetry_id'].'</th><td>'.$row['telemetry_useragent'].'</td><td>'.date('d.m.Y H:i', $row['telemetry_date']).'</td></tr>';
 }
 
