@@ -17,7 +17,7 @@ if(isset($_POST['longUrlInput'])) {
 
 
     if($oneTimeTokenInvalid) {
-        // $alerts[] = ['type' => 'danger', 'message' => 'Der Einmalschlüssel ist abgelaufen. Bitte versuche es erneut.'];
+        $alerts[] = ['type' => 'danger', 'message' => 'Der Einmalschlüssel ist abgelaufen. Bitte versuche es erneut.'];
     }
 
     if(!filter_var($origUrl, FILTER_VALIDATE_URL)) {

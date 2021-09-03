@@ -143,6 +143,8 @@
         </div>
     </div>
 
+    <?= $templateEngine->render('footer'); ?>
+
     <script src="<?= $requestedPath ?>/asset/js/bootstrap.bundle.min.js"></script>
 
 </body>
